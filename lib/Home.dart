@@ -19,11 +19,19 @@ class _MyWidgetState extends State<Home> {
               style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold)),
         ),
       ),
-      body: _UIBuild(),
+      body: _uiBuild(),
+      floatingActionButton: _authButton(),
     );
   }
 
-  Widget _UIBuild() {
+  Widget _authButton() {
+    return FloatingActionButton(
+      onPressed: () {},
+      child: Icon(Authenticated ? Icons.lock : Icons.lock_open),
+    );
+  }
+
+  Widget _uiBuild() {
     return SizedBox(
         width: MediaQuery.sizeOf(context).width,
         child: Column(
