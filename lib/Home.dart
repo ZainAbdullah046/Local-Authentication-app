@@ -32,7 +32,19 @@ class _MyWidgetState extends State<Home> {
         if (!Authenticated) {
           final bool canAuthenticateWithBiometric =
               await auth.canCheckBiometrics;
-          print(canAuthenticateWithBiometric);
+          if (canAuthenticateWithBiometric) {
+            try {
+              final bool didAuthenticated = await auth.authenticate(
+                  localizedReason:
+                      'Plz Authenticate so we can show your balance',
+                  options: const AuthenticationOptions(biometricOnly: true));
+              setState(() {
+                Authenticated = didAuthenticated;
+              });
+            } catch (e) {
+              print(e);
+            }
+          }
         } else {
           setState(() {
             Authenticated = false;
